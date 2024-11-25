@@ -220,6 +220,61 @@ if (isset($_GET['query'])) {
         </div>
     </div>
 </body>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".add-to-cart-btn");
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const productId = button.getAttribute("data-id");
+
+            // Gửi yêu cầu AJAX đến server
+            fetch("add_to_cart.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `product_id=${productId}`,
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    alert("Sản phẩm đã được thêm vào giỏ!");
+                } else {
+                    alert("Có lỗi xảy ra. Vui lòng thử lại.");
+                }
+            })
+            .catch((error) => {
+                console.error("Lỗi khi thêm sản phẩm vào giỏ:", error);
+            });
+        });
+    });
+});
+
+function addToCart(productId) {
+    // Gửi yêu cầu AJAX đến server để thêm sản phẩm vào giỏ
+    fetch("add_to_cart.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `product_id=${productId}`,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Sản phẩm đã được thêm vào giỏ!");
+        } else {
+            alert("Có lỗi xảy ra: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Lỗi khi thêm sản phẩm vào giỏ:", error);
+    });
+}
+
+</script>
+
 </html>
 
 

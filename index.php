@@ -42,6 +42,8 @@ $top_rated_result = $conn->query($top_rated_sql);
     <title>ElecS - Cửa hàng điện tử trực tuyến</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -60,11 +62,14 @@ $top_rated_result = $conn->query($top_rated_sql);
                 <?php if(isset($_SESSION['user_id'])): ?>
                     <a href="cart.php" class="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
-                        <!--<span class="cart-count">
-                            // echo $cart_count; 
-                        </span>-->
                     </a>
-                    <a href="profile.php"><i class="fas fa-user"></i></a>
+                    <a href="profile.php" title="Hồ sơ cá nhân">
+                        <i class="fas fa-user"></i>
+                    </a>
+
+                    <a href="order_history.php">Lịch sử đơn hàng</a>
+
+
                     <a href="logout.php">Đăng xuất</a>
                 <?php else: ?>
                     <a href="login.php">Đăng nhập</a>
@@ -145,7 +150,8 @@ $top_rated_result = $conn->query($top_rated_sql);
     <p class="price"><?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</p>
 
     <!-- Nút thêm vào giỏ -->
-    <button onclick="addToCart(<?php echo $product['product_id']; ?>)">Thêm vào giỏ</button>
+    <button class="add-to-cart-btn" onclick="addToCart(<?php echo $product['product_id']; ?>)">Thêm vào giỏ</button>
+
 </div>
 
             <?php endwhile; ?>

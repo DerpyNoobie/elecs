@@ -34,7 +34,7 @@ header {
 }
 
 .search-bar input {
-    width: 100%;
+    width: 350%;
     border: none;
     padding: 5px;
     font-size: 14px;
@@ -54,12 +54,38 @@ header {
     font-size: 18px;
 }
 
-.user-actions a {
-    color: white;
-    margin: 0 10px;
-    text-decoration: none;
-    font-size: 16px;
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
+
+.user-actions a {
+    text-decoration: none;
+    color: #fff; /* Màu biểu tượng (có thể thay đổi theo theme) */
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.user-actions a:hover {
+    color: #ff5000; /* Màu khi hover */
+}
+
+.user-actions .cart-icon {
+    position: relative;
+}
+
+.user-actions .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #ff5000;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 2px 6px;
+}
+
 
 .swiper {
     width: 100%;
@@ -144,4 +170,145 @@ footer {
     text-align: center;
     padding: 20px;
     font-size: 14px;
+}
+
+/* Đặt nền tảng chung */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1, h2, h3 {
+    color: #ff5000;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #ff5000;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ff0000;
+}
+
+/* Header */
+header {
+    background-color: #ff5000;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+header a {
+    color: #fff;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #ffcccb;
+}
+
+/* Forms */
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input, form button, form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form button {
+    background-color: #ff5000;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+form button:hover {
+    background-color: #ff7000;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table thead {
+    background-color: #ff5000;
+    color: white;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.primary {
+    background-color: #ff5000;
+    color: white;
+    font-weight: bold;
+}
+
+button.primary:hover {
+    background-color: #ff7000;
+}
+
+button.secondary {
+    background-color: #ddd;
+    color: #333;
+}
+
+button.secondary:hover {
+    background-color: #bbb;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
 }
