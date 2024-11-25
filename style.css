@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #ff5000;
+    color: white;
+    padding: 10px 0;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 50px;
+    padding: 5px 10px;
+    width: 50%;
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 25px;
+}
+
+.search-bar button {
+    background-color: #ff5000;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.search-bar button i {
+    color: white;
+    font-size: 18px;
+}
+
+.user-actions a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.swiper {
+    width: 100%;
+    height: 300px;
+    margin: 20px 0;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 40px 0 20px;
+    color: #333;
+}
+
+.categories, .products-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.category-card, .product-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 30%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.category-card:hover, .product-card:hover {
+    transform: scale(1.05);
+}
+
+.category-card i, .product-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.category-card h3, .product-card h3 {
+    padding: 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+.category-card p, .product-card .price {
+    padding: 0 15px 15px;
+    font-size: 16px;
+    color: #777;
+}
+
+.product-rating {
+    padding: 0 15px;
+}
+
+.product-rating i {
+    color: #FFD700;
+}
+
+.product-card button {
+    background-color: #ff5000;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 0 0 10px 10px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
