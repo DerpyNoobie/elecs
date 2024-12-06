@@ -32,7 +32,38 @@ $top_rated_sql = "SELECT p.*, AVG(r.rating) as avg_rating, COUNT(r.review_id) as
                   ORDER BY avg_rating DESC 
                   LIMIT 8";
 $top_rated_result = $conn->query($top_rated_sql);
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
+    header('Content-Type: application/json'); // Đặt tiêu đề phản hồi là JSON
+    session_start();
+
+    $product_id = intval($_POST['product_id']);
+    $quantity = isset($_POST['quantity']) ? intval($_POST['quantity']) : 1;
+
+    // Kiểm tra và khởi tạo giỏ hàng
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+
+    // Thêm sản phẩm vào giỏ hàng
+    if (isset($_SESSION['cart'][$product_id])) {
+        $_SESSION['cart'][$product_id] += $quantity;
+    } else {
+        $_SESSION['cart'][$product_id] = $quantity;
+    }
+
+    // Phản hồi JSON
+    echo json_encode([
+        'status' => 'success',
+        'message' => 'Sản phẩm đã được thêm vào giỏ hàng!',
+        'cart_count' => count($_SESSION['cart']),
+    ]);
+    exit;
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -148,9 +179,10 @@ $top_rated_result = $conn->query($top_rated_sql);
 
     <!-- Giá sản phẩm -->
     <p class="price"><?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</p>
-
     <!-- Nút thêm vào giỏ -->
-    <button class="add-to-cart-btn" onclick="addToCart(<?php echo $product['product_id']; ?>)">Thêm vào giỏ</button>
+    <button onclick="addToCart(<?= $product['product_id']; ?>)">Thêm vào giỏ</button>
+
+
 
 </div>
 
@@ -176,5 +208,58 @@ $top_rated_result = $conn->query($top_rated_sql);
             },
         });
     </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".add-to-cart-btn");
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const productId = button.getAttribute("data-id");
+
+            // Gửi yêu cầu AJAX đến server
+            fetch("add_to_cart.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: `product_id=${productId}`,
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    alert("Sản phẩm đã được thêm vào giỏ!");
+                } else {
+                    alert("Có lỗi xảy ra. Vui lòng thử lại.");
+                }
+            })
+            .catch((error) => {
+                console.error("Lỗi khi thêm sản phẩm vào giỏ:", error);
+            });
+        });
+    });
+});
+
+function addToCart(productId) {
+    // Gửi yêu cầu AJAX đến server để thêm sản phẩm vào giỏ
+    fetch("add_to_cart.php", { 
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `product_id=${productId}`,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Sản phẩm đã được thêm vào giỏ!");
+        } else {
+            alert("Có lỗi xảy ra: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Lỗi khi thêm sản phẩm vào giỏ:", error);
+    });
+}
+</script>
 </body>
 </html>

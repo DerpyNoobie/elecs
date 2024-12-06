@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function addToCart(productId) {
     // Gửi yêu cầu AJAX đến server để thêm sản phẩm vào giỏ
-    fetch("add_to_cart.php", {
+    fetch("add_to_cart.php", { 
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -272,7 +272,6 @@ function addToCart(productId) {
         console.error("Lỗi khi thêm sản phẩm vào giỏ:", error);
     });
 }
-
 </script>
 
 </html>
